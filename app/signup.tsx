@@ -22,46 +22,54 @@ const SignUp = () => {
       {/* Form View */}
       <View className=" flex flex-col gap-3">
         <View className=" flex px-3 gap-2">
-          <Text className=" text-[26px] font-bold">Name</Text>
+          
           <TextInput
+          placeholder='Enter your name'
+          placeholderTextColor={'black'}
             keyboardType="default"
             onChangeText={(value) => {
               setname(value)
             }}
-            className=" border px-2 border-black w-[80%] rounded-md py-2"
+            className=" border px-2 text-black border-black w-[80%] rounded-[25px] py-2"
           />
         </View>
 
         <View className=" flex px-3 gap-2">
-          <Text className=" text-[26px] font-bold">Email</Text>
+          
           <TextInput
+          placeholderTextColor={'black'}
+          placeholder='Enter your E-mail'
             keyboardType="default"
             onChangeText={(value) => {
               setemail(value)
             }}
-            className=" border px-2 border-black w-[80%] rounded-md py-2"
+            className=" border px-2 text-black border-black w-[80%] rounded-[25px] py-2"
           />
         </View>
 
         <View className=" flex px-3 gap-2">
-          <Text className=" text-[26px] font-bold">Password</Text>
+          
           <TextInput
+          placeholderTextColor={'black'}
+          placeholder='Enter your password'
             keyboardType="visible-password"
             onChangeText={(value) => {
               setpassword(value)
             }}
-            className=" border px-2 border-black w-[80%] rounded-md py-2"
+            className=" border px-2 text-black border-black w-[80%] rounded-[25px] py-2"
           />
         </View>
 
         <View className=" flex px-3 gap-2">
-          <Text className=" text-[26px] font-bold">Age</Text>
+          
           <TextInput
+          placeholder='Enter your Age'
+          placeholderTextColor={'black'}
             keyboardType="number-pad"
             onChangeText={(value) => {
               setage(value)
             }}
-            className=" border px-2 border-black w-[80%] rounded-md py-2"
+            className=" border px-2 text-black border-black w-[80%] rounded-[25px] py-2"
           />
         </View>
 
@@ -71,10 +79,10 @@ const SignUp = () => {
         </View>
         <View className=" flex px-3 gap-2">
           <View className="flex flex-row items-center justify-between">
-            <Text className=" text-[26px] font-bold">Height (in cm)</Text>
+            <Text className=" text-[18px] font-bold">Height (in cm)</Text>
             <TextInput
             keyboardType='numeric'
-              className=" border w-[50%] px-2 rounded-md"
+              className=" border w-[50%] px-2 py-2 rounded-[25px] text-black"
               value={String(height)}
             />
           </View>
@@ -91,10 +99,10 @@ const SignUp = () => {
 
         <View className=" flex px-3 gap-2">
           <View className="flex flex-row items-center justify-between">
-            <Text className=" text-[26px] font-bold">Weight (in kg)</Text>
+            <Text className=" text-[18px] font-bold">Weight (in kg)</Text>
             <TextInput
             keyboardType='numeric'
-              className=" border w-[50%] px-2 rounded-md"
+              className=" border w-[50%] px-2 py-2 rounded-[25px] text-black"
               value={String(weight)}
             />
           </View>

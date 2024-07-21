@@ -17,7 +17,7 @@ const Home = () => {
         </Text>
       </View>
       <View className=' flex flex-row justify-between px-5 mb-[5%]' >
-        <TouchableOpacity className=' bg-black px-5 py-3 rounded-full'>
+        <TouchableOpacity onPress={()=>{router.push('/login')}} className=' bg-black px-5 py-3 rounded-full'>
             <View>
                 <Text className=' text-2xl font-bold text-white '>Sign-In</Text>
             </View>

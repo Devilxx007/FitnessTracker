@@ -14,7 +14,7 @@ const GenderCard = ({sex,gender,onSelect}:props) => {
     onSelect(gender === sex ? '' : sex);
   };
   return (
-    <TouchableOpacity className=' border border-black flex flex-col items-end rounded-lg'>
+    <TouchableOpacity className=' border border-black flex flex-col items-start rounded-lg'>
       <RadioButton
       value={sex}
       status={gender === `${sex}` ? 'checked' : 'unchecked'}

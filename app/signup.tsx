@@ -46,7 +46,7 @@ const SignUp = () => {
       const data = await response.json()
       console.log("Registration successfull",data)
     } catch (error) {
-      console.log("error in registration",error)
+       console.log("error in registration",error)
     }
   }
 
@@ -54,9 +54,9 @@ const SignUp = () => {
 
   return (
     <ScrollView className=" flex-1 flex-col bg-white">
-      <SafeAreaView className=" px-3">
-        <Text className=" text-[38px] ">Give us some basic information</Text>
-      </SafeAreaView>
+      
+        <Text className=" text-[38px] px-3 font-medium">Give us some basic information</Text>
+      
       <View className=" flex flex-col gap-3">
         <View className=" flex px-3 gap-2">
           <TextInput

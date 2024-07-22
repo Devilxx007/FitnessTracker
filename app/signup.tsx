@@ -1,12 +1,13 @@
 import { View, Text, TextInput, TouchableOpacity, Platform } from 'react-native'
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { ScrollView } from 'react-native'
 import GenderCard from '@/components/GenderCard'
 import Slider from '@react-native-community/slider'
 import { Feather } from '@expo/vector-icons'
 import axios from 'axios'
 import { Dropdown } from 'react-native-element-dropdown';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const activityLevelArray = [
   { label: 'Beginner', value: '1' },
   { label: 'Moderate', value: '2' },
@@ -19,12 +20,13 @@ const SignUp = () => {
   const [age, setage] = useState<Number>()
   const [height, setheight] = useState(0)
   const [weight, setweight] = useState(0)
-  const [gender, setgender] = useState('')
+  const [gender, setgender] = useState('Male')
   const [activityLevel, setactivityLevel] = useState({})
   const [goals, setgoals] = useState('')
 
   const submitForm = async () => {
     try {
+      console.log("inside try block")
       const response = await fetch('https://fitness-be-veud.onrender.com/api/auth/register',{
         method: 'POST',
         headers: {
@@ -44,9 +46,11 @@ const SignUp = () => {
       })
 
       const data = await response.json()
-      console.log("Registration successfull",data)
+      console.log(data.token)
+      await AsyncStorage.setItem("Data",JSON.stringify(data.data))
+      await AsyncStorage.setItem("Token",data.token)
     } catch (error) {
-       console.log("error in registration",error)
+       console.log("Error in registration",error)
     }
   }
 

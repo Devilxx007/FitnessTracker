@@ -1,9 +1,7 @@
 import { View, Text,TextInput, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
-
-
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 const Login = () => {
 
@@ -29,7 +27,10 @@ const Login = () => {
             })
             const data = await response.json()
 
-            console.log("Login Successful",data);
+            await AsyncStorage.setItem("Data",JSON.stringify(data.data))
+            await AsyncStorage.setItem("Token",data.token)
+
+            router.replace("/(tabs)");
             
         } catch (error) {
             console.error("Login Unsucessful",error)

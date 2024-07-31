@@ -2,6 +2,7 @@ import { View, Text } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { Tabs } from 'expo-router'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 const TabsLayout = () => {
 
   const [gender, setgender] = useState('')
@@ -27,8 +28,19 @@ const TabsLayout = () => {
         {/* Cycle will be protected route only available for females */}
 
         <Tabs.Screen name='Cycle' redirect={gender !== "Female"}/>
-
-        
+        <Tabs.Screen name='Workout' options={{
+          headerShown:false,
+          tabBarIcon(props) {
+            return (
+              <FontAwesome6 name="dumbbell" size={24} color="black" />
+            )
+          },
+          
+          tabBarIconStyle:{
+            margin:2,
+            paddingTop:1,
+          }
+        }}/>
         <Tabs.Screen name='Profile'/>
     </Tabs>
   )

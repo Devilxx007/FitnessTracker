@@ -26,8 +26,7 @@ const SignUp = () => {
 
   const submitForm = async () => {
     try {
-      console.log("inside try block")
-      const response = await fetch('https://fitness-be-veud.onrender.com/api/auth/register',{
+      const response = await fetch('https://fitness-be-veud.onrender.com/api/auth/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,21 +35,27 @@ const SignUp = () => {
           name: name,
           email: email,
           password: password,
-          age: age,
-          height: height,
-          weight: weight,
+          age: age ? Number(age) : null,
+          height: height ? Math.round(height) : null, 
+          weight: weight ? Math.round(weight) : null,
           gender: gender,
-          activityLevel: activityLevel.label,
+          activityLevel: activityLevel.label || 'Beginner',
           goals: goals,
         })
-      })
-
-      const data = await response.json()
-      console.log(data.token)
-      await AsyncStorage.setItem("Data",JSON.stringify(data.data))
-      await AsyncStorage.setItem("Token",data.token)
+      });
+  
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+  
+      const data = await response.json();
+      console.log("This is the data", data.data);
+      await AsyncStorage.setItem("Data", JSON.stringify(data.data));
+      if (data.token) {
+        await AsyncStorage.setItem("Token", data.token);
+      }
     } catch (error) {
-       console.log("Error in registration",error)
+      console.error("Error in registration", error);
     }
   }
 
@@ -111,8 +116,8 @@ const SignUp = () => {
         </View>
 
         <View className=" flex flex-row justify-between mt-2 px-3">
-          <GenderCard sex="male" gender={gender} onSelect={setgender} />
-          <GenderCard sex="female" gender={gender} onSelect={setgender} />
+          {/* <GenderCard sex="male" gender={gender} onSelect={setgender} />
+          <GenderCard sex="female" gender={gender} onSelect={setgender} /> */}
         </View>
         <View className=" flex px-3 gap-2">
           <View className="flex flex-row items-center justify-between">

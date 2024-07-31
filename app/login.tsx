@@ -11,31 +11,33 @@ const Login = () => {
 
     const router = useRouter()
 
-    const handleLogin = async ()=>{
-
-        try {
-
-            console.log("inside try block");
-            
-            const response = await fetch('https://fitness-be-veud.onrender.com/api/auth/login',{
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({
-                    email: email,
-                    password: password
-                })
-            })
-            const data = await response.json()
-
-            await AsyncStorage.setItem("Data",JSON.stringify(data.data))
-            await AsyncStorage.setItem("Token",data.token)
-
-            router.replace("/(tabs)");
-            
-        } catch (error) {
-            console.error("Login Unsucessful",error)
+    const handleLogin = async () => {
+        if (!email || !password) {
+          setError('Email and password are required');
+          return;
         }
-    }
+    
+        try {
+          console.log("inside try block");
+          const response = await fetch('https://fitness-be-veud.onrender.com/api/auth/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({ email, password }),
+          });
+          if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+          const data = await response.json();
+          await AsyncStorage.setItem("Data", JSON.stringify(data.data));
+          if (data.token) {
+            await AsyncStorage.setItem("Token", data.token);
+          }
+          router.replace("/(tabs)");
+    
+        } catch (error) {
+          console.error("Login Unsuccessful", error);
+        }
+      };
 
     return ( 
     <View className=' flex-1 flex-col px-3  gap-5 bg-white'>
@@ -83,3 +85,7 @@ const Login = () => {
 }
 
 export default Login
+
+function setError(arg0: string) {
+    throw new Error('Function not implemented.')
+}
